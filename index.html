@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VENOO | Official Online Store</title>
+    
+    <!-- External Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Cinzel:wght@700;800;900&family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CORE SYSTEM VARIABLES & RESETS
+           ========================================================================== */
+        :root {
+            --primary-black: #0d0d0d;
+            --secondary-dark: #1a1a1a;
+            --accent-gray: #f4f4f6;
+            --border-light: #e5e5e7;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --card-background: #ffffff;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.12);
+            --radius-main: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--accent-gray);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        input, select, textarea {
+            font-family: inherit;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGATION STYLES
+           ========================================================================== */
+        .announcement-bar {
+            background-color: var(--primary-black);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 8px 16px;
+            letter-spacing: 0.5px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 16px 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--primary-black);
+            text-transform: lowercase;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .brand-logo span {
+            color: var(--text-muted);
+            font-family: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link-item {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .nav-link-item:hover {
+            color: var(--text-muted);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .action-btn {
+            position: relative;
+            background: var(--accent-gray);
+            border: 1px solid var(--border-light);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .action-btn:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--primary-black);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION & BANNER
+           ========================================================================== */
+        .hero-section {
+            padding: 60px 4vw 30px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--primary-black);
+            margin-bottom: 16px;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           4. CONTROLS, SEARCH & FILTER BAR (Sticky Fixed)
+           ========================================================================== */
+        .controls-wrapper {
+            max-width: 1440px;
+            margin: 30px auto 10px;
+            padding: 0 4vw;
+            position: sticky;
+            top: 80px;
+            z-index: 900;
+        }
+
+        .controls-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 16px 24px;
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            min-width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 42px 12px 16px;
+            background: var(--accent-gray);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box input:focus {
+            background: #ffffff;
+            border-color: var(--primary-black);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .select-filter {
+            padding: 12px 16px;
+            background: var(--accent-gray);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .color-filter-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .color-dot:hover, .color-dot.active {
+            transform: scale(1.2);
+            border-color: var(--primary-black);
+        }
+
+        /* ==========================================================================
+           5. PRODUCT GRID & CARD DESIGNS
+           ========================================================================== */
+        .products-section {
+            max-width: 1440px;
+            margin: 30px auto 100px;
+            padding: 0 4vw;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background: var(--card-background);
+            border-radius: var(--radius-main);
+            padding: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-image-box {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            border-radius: 12px;
+            background: #f8f8fa;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .card-image-box img {
+            transform: scale(1.08);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary-black);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-details {
+            padding: 18px 4px 4px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-category {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .price-tag {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--primary-black);
+        }
+
+        .btn-view-product {
+            background: var(--primary-black);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-view-product:hover {
+            background: var(--secondary-dark);
+        }
+
+        /* ==========================================================================
+           6. DEDICATED SINGLE PRODUCT PAGE VIEW
+           ========================================================================== */
+        #product-details-view {
+            display: none;
+            max-width: 1280px;
+            margin: 40px auto 100px;
+            padding: 0 4vw;
+        }
+
+        .btn-back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 30px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-back-home:hover {
+            transform: translateX(4px);
+            background: var(--primary-black);
+            color: #ffffff;
+        }
+
+        .single-product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: #ffffff;
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .single-product-gallery {
+            width: 100%;
+            height: 520px;
+            background: #f8f8fa;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .single-product-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .single-product-info h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--primary-black);
+        }
+
+        .single-product-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-black);
+            margin-bottom: 20px;
+        }
+
+        .single-product-description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 20px;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .size-selection-box {
+            margin-bottom: 30px;
+        }
+
+        .size-selection-box h4 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .size-options-grid {
+            display: flex;
+            gap: 12px;
+        }
+
+        .size-box-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .size-box-btn:hover, .size-box-btn.active {
+            border-color: var(--primary-black);
+            background: var(--primary-black);
+            color: #ffffff;
+        }
+
+        .btn-add-to-cart-large {
+            width: 100%;
+            background: var(--primary-black);
+            color: #ffffff;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .btn-add-to-cart-large:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           7. CART DRAWER & CHECKOUT SYSTEM
+           ========================================================================== */
+        .cart-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+        }
+
+        .cart-drawer-overlay.active {
+            display: block;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            left: -460px;
+            width: 440px;
+            max-width: 92vw;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 2100;
+            box-shadow: 20px 0 50px rgba(0, 0, 0, 0.15);
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 28px;
+        }
+
+        .cart-drawer.open {
+            left: 0;
+        }
+
+        .cart-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cart-drawer-header h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .close-drawer-btn {
+            background: var(--accent-gray);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-items-wrapper {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cart-item-single {
+            display: flex;
+            gap: 16px;
+            background: var(--accent-gray);
+            padding: 12px;
+            border-radius: 14px;
+            align-items: center;
+        }
+
+        .cart-item-single img {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .cart-item-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .checkout-form-container {
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkout-form-container h4 {
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--accent-gray);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .input-field:focus {
+            background: #ffffff;
+            border-color: var(--primary-black);
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .btn-submit-order {
+            background: var(--success-color);
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1.05rem;
+            width: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-submit-order:hover {
+            opacity: 0.95;
+        }
+
+        /* ==========================================================================
+           8. SCROLL TO TOP BUTTON STYLES
+           ========================================================================== */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-black);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            z-index: 1500;
+            transition: var(--transition-smooth);
+        }
+
+        #scrollTopBtn:hover {
+            transform: translateY(-4px);
+            background-color: var(--secondary-dark);
+        }
+
+        /* ==========================================================================
+           9. FOOTER SECTION
+           ========================================================================== */
+        footer {
+            background: var(--primary-black);
+            color: #ffffff;
+            padding: 60px 4vw 30px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-layout {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col h5 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p, .footer-col li {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            list-style: none;
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 20px auto 0;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 900px) {
+            .single-product-layout {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+            .single-product-gallery {
+                height: 380px;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .controls-wrapper {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🔥 تشكيلة صيف 2026 حصرية - خامات قطن مصري 100% عالية الجودة
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <div class="brand-logo" onclick="switchView('shop')">venoo<span>.</span></div>
+            
+            <ul class="nav-links">
+                <li class="nav-link-item" onclick="switchView('shop')">الرئيسية</li>
+                <li class="nav-link-item" onclick="filterByTag('Oversized')">أوفرايزد</li>
+                <li class="nav-link-item" onclick="filterByTag('Minimal')">مينيمال</li>
+                <li class="nav-link-item" onclick="filterByTag('Basic')">أساسي</li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="action-btn" onclick="openCartDrawer()">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="badge-count" id="cart-counter">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOP / MAIN CATALOG VIEW -->
+    <div id="shop-view">
+        <section class="hero-section">
+            <div class="hero-subtitle">NEW ARRIVALS 2026</div>
+            <h1 class="hero-title">مجموعة التيشرتات الصيفية</h1>
+            <p class="hero-description">تصاميم عصرية خالية من التعقيد، مصممة بأعلى معايير الجودة لتناسب يومك بمظهر أنيق وراحة لا مثيل لها.</p>
+        </section>
+
+        <!-- Sticky Controls, Filter & Search -->
+        <section class="controls-wrapper">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="ابحث عن موديل أو لون..." oninput="handleSearch()">
+                    <i data-lucide="search"></i>
+                </div>
+
+                <div class="filter-group">
+                    <select class="select-filter" id="sort-select" onchange="handleSort()">
+                        <option value="default">الترتيب الافتراضي</option>
+                        <option value="low-high">السعر: من الأقل للأعلى</option>
+                        <option value="high-low">السعر: من الأعلى للأقل</option>
+                    </select>
+
+                    <div class="color-filter-dots">
+                        <div class="color-dot" style="background: #18181b;" onclick="filterColor('أسود')" title="أسود"></div>
+                        <div class="color-dot" style="background: #ffffff; border-color:#ccc;" onclick="filterColor('أبيض')" title="أبيض"></div>
+                        <div class="color-dot" style="background: #3f6212;" onclick="filterColor('زيتوني')" title="زيتوني"></div>
+                        <div class="color-dot" style="background: #d97706;" onclick="filterColor('هافان')" title="هافان"></div>
+                        <div class="color-dot" style="background: #475569;" onclick="filterColor('رصاصي')" title="رصاصي"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Product Catalog -->
+        <section class="products-section">
+            <div class="products-grid" id="catalog-grid">
+                <!-- JavaScript Output Product Cards Here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- DEDICATED PRODUCT DETAILS PAGE VIEW -->
+    <div id="product-details-view">
+        <button class="btn-back-home" onclick="switchView('shop')">
+            <i data-lucide="arrow-right"></i> العودة للمعرض الرئيسي
+        </button>
+
+        <div class="single-product-layout">
+            <div class="single-product-gallery">
+                <img id="detail-img" src="" alt="T-Shirt Detail View">
+            </div>
+
+            <div class="single-product-info">
+                <h1 id="detail-title">تيشرت فينّو فاخر</h1>
+                <div class="single-product-price" id="detail-price">0 ج.م</div>
+                <p class="single-product-description" id="detail-desc">
+                    مصنوع من قطن ناعم مائة بالمائة مخصص للأجواء الصيفية. تتميز القصات بالمرونة والمتانة العالية مع مقاومة التمدد والبهتان بعد الغسيل.
+                </p>
+
+                <ul class="spec-list">
+                    <li class="spec-item"><i data-lucide="check-circle-2" style="color:#10b981;"></i> خامة قطنية ناعمة 100%</li>
+                    <li class="spec-item"><i data-lucide="check-circle-2" style="color:#10b981;"></i> قصات حديثة (Oversized & Regular)</li>
+                    <li class="spec-item"><i data-lucide="check-circle-2" style="color:#10b981;"></i> معاينة المنتج متوفرة أثناء الاستلام</li>
+                </ul>
+
+                <div class="size-selection-box">
+                    <h4>تحديد المقاس:</h4>
+                    <div class="size-options-grid">
+                        <div class="size-box-btn" onclick="selectDetailSize('S', this)">S</div>
+                        <div class="size-box-btn active" onclick="selectDetailSize('M', this)">M</div>
+                        <div class="size-box-btn" onclick="selectDetailSize('L', this)">L</div>
+                        <div class="size-box-btn" onclick="selectDetailSize('XL', this)">XL</div>
+                        <div class="size-box-btn" onclick="selectDetailSize('2XL', this)">2XL</div>
+                    </div>
+                </div>
+
+                <button class="btn-add-to-cart-large" onclick="addCurrentProductToCart()">
+                    <i data-lucide="shopping-bag"></i> إضافة لسلة المشتريات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER & OVERLAY -->
+    <div class="cart-drawer-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>سلة التسوق (<span id="drawer-item-count">0</span>)</h3>
+            <button class="close-drawer-btn" onclick="closeCartDrawer()">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <div class="cart-items-wrapper" id="cart-items-list">
+            <!-- Dynamic Cart Items -->
+        </div>
+
+        <div class="checkout-form-container">
+            <h4>بيانات الطلب:</h4>
+            <input type="text" id="cust-name" class="input-field" placeholder="الاسم بالكامل" required>
+            <input type="tel" id="cust-phone" class="input-field" placeholder="رقم الموبايل" required>
+            <input type="text" id="cust-address" class="input-field" placeholder="العنوان بالتفصيل" required>
+
+            <div class="cart-summary-row">
+                <span>الإجمالي:</span>
+                <span id="cart-total-price">0 ج.م</span>
+            </div>
+
+            <button class="btn-submit-order" onclick="submitOrder()">تأكيد الطلب 🚀</button>
+        </div>
+    </div>
+
+    <!-- Scroll To Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-layout">
+            <div class="footer-col">
+                <div class="brand-logo" style="color:#fff; margin-bottom:12px;">venoo<span>.</span></div>
+                <p>براند مصري متعدّد الاستخدامات مخصص لتوفير أرقى قطع الملابس الصيفية بخامات قطنية ممتازة.</p>
+            </div>
+            <div class="footer-col">
+                <h5>روابط السريعة</h5>
+                <li>الرئيسية</li>
+                <li>جدول المقاسات</li>
+                <li>سياسة التبديل والاسترجاع</li>
+            </div>
+            <div class="footer-col">
+                <h5>تواصل معنا</h5>
+                <p>واتساب الدعم: 01153578730</p>
+                <p>ساعات العمل: 10 ص - 10 م</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 VENOO Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           REAL HIGH-QUALITY T-SHIRT IMAGES (NO PEOPLE)
+           ========================================================================== */
+        const tshirtRealImages = [
+            "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80", // White Minimal
+            "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80", // Black Graphic/Solid
+            "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80", // Dark Heather
+            "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80", // Black Minimal
+            "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80", // White Graphic
+            "https://images.unsplash.com/photo-1622445268465-840246e904fb?auto=format&fit=crop&w=800&q=80", // Olive/Beige
+            "https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=800&q=80", // White Solid
+            "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80"  // White Flat
+        ];
+
+        const titlesList = [
+            "أوفرايزد أسود كلاسيك", "أبيض مينيمال صافي", "زيتوني كاجوال", 
+            "هافان صيفي", "رصاصي جرافيت", "أوف وايت راقي", "كحلي هادئ", "رمادي داكن"
+        ];
+
+        const colorsList = ["أسود", "أبيض", "زيتوني", "هافان", "رصاصي", "أوف وايت", "كحلي", "رمادي"];
+        const tagTypes = ["Oversized", "Minimal", "Basic"];
+        const basePrices = [380, 420, 450, 490, 520, 390, 440, 460];
+
+        // Generation of 40 Unique Product Objects (تم حذف الترقيم #i من عنوان المنتجات)
+        const productsDatabase = [];
+        for (let i = 1; i <= 40; i++) {
+            const index = (i - 1) % tshirtRealImages.length;
+            productsDatabase.push({
+                id: i,
+                title: `تيشرت فينّو ${titlesList[index]}`,
+                price: basePrices[index] + (i * 3),
+                image: tshirtRealImages[index],
+                color: colorsList[index],
+                tag: tagTypes[i % tagTypes.length],
+                description: `تيشرت صيفي مميز بتصميم حداثي وفاخر، معالج ضد الانكماش ومصنوع بالكامل من القطن الطبيعي للراحة طوال اليوم.`,
+                selectedSize: 'M'
+            });
+        }
+
+        let displayedProducts = [...productsDatabase];
+        let currentSelectedProduct = null;
+        let shoppingCart = [];
+
+        /* Catalog Rendering */
+        function renderCatalog(items) {
+            const grid = document.getElementById('catalog-grid');
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => openProductDetailsView(product.id);
+                card.innerHTML = `
+                    <div class="card-image-box">
+                        <span class="card-tag">${product.tag}</span>
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-category">اللون: ${product.color}</span>
+                        <h3 class="card-title">${product.title}</h3>
+                        <div class="card-meta">
+                            <span class="price-tag">${product.price} ج.م</span>
+                            <button class="btn-view-product">
+                                التفاصيل <i data-lucide="arrow-left" style="width:16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        /* Single Product Page Switcher */
+        function openProductDetailsView(productId) {
+            currentSelectedProduct = productsDatabase.find(p => p.id === productId);
+            if(!currentSelectedProduct) return;
+
+            document.getElementById('shop-view').style.display = 'none';
+            document.getElementById('product-details-view').style.display = 'block';
+
+            document.getElementById('detail-title').innerText = currentSelectedProduct.title;
+            document.getElementById('detail-price').innerText = currentSelectedProduct.price + ' ج.م';
+            document.getElementById('detail-desc').innerText = currentSelectedProduct.description;
+            document.getElementById('detail-img').src = currentSelectedProduct.image;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchView(viewName) {
+            if(viewName === 'shop') {
+                document.getElementById('product-details-view').style.display = 'none';
+                document.getElementById('shop-view').style.display = 'block';
+            }
+        }
+
+        function selectDetailSize(size, element) {
+            if(currentSelectedProduct) {
+                currentSelectedProduct.selectedSize = size;
+            }
+            document.querySelectorAll('.size-box-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        /* Cart Systems */
+        function openCartDrawer() {
+            document.getElementById('cart-drawer').classList.add('open');
+            document.getElementById('cart-overlay').classList.add('active');
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cart-drawer').classList.remove('open');
+            document.getElementById('cart-overlay').classList.remove('active');
+        }
+
+        function addCurrentProductToCart() {
+            if(currentSelectedProduct) {
+                shoppingCart.push({ ...currentSelectedProduct });
+                updateCartUI();
+                openCartDrawer();
+            }
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-counter').innerText = shoppingCart.length;
+            document.getElementById('drawer-item-count').innerText = shoppingCart.length;
+
+            const cartContainer = document.getElementById('cart-items-list');
+            cartContainer.innerHTML = '';
+            let total = 0;
+
+            shoppingCart.forEach((item, idx) => {
+                total += item.price;
+                cartContainer.innerHTML += `
+                    <div class="cart-item-single">
+                        <img src="${item.image}" alt="item">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-meta">المقاس: ${item.selectedSize} | اللون: ${item.color}</div>
+                            <div class="cart-item-price">${item.price} ج.م</div>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" style="color:#ef4444;"><i data-lucide="trash-2"></i></button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cart-total-price').innerText = total + ' ج.م';
+            lucide.createIcons();
+        }
+
+        function removeFromCart(index) {
+            shoppingCart.splice(index, 1);
+            updateCartUI();
+        }
+
+        /* Filtering & Search Mechanics */
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = productsDatabase.filter(p => 
+                p.title.toLowerCase().includes(query) || p.color.toLowerCase().includes(query)
+            );
+            renderCatalog(filtered);
+        }
+
+        function filterColor(colorName) {
+            const filtered = productsDatabase.filter(p => p.color === colorName);
+            renderCatalog(filtered);
+        }
+
+        function filterByTag(tagName) {
+            switchView('shop');
+            const filtered = productsDatabase.filter(p => p.tag === tagName);
+            renderCatalog(filtered);
+        }
+
+        function handleSort() {
+            const val = document.getElementById('sort-select').value;
+            let sorted = [...displayedProducts];
+            if(val === 'low-high') {
+                sorted.sort((a,b) => a.price - b.price);
+            } else if(val === 'high-low') {
+                sorted.sort((a,b) => b.price - a.price);
+            }
+            renderCatalog(sorted);
+        }
+
+        /* Scroll To Top Logic */
+        window.onscroll = function() {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        /* Order Submission Logic (تم حذف الترقيم 1. 2. والاستبدال بنقطة) */
+        function submitOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+
+            if (!name || !phone || !address) {
+                alert('يرجى ملء جميع بيانات التوصيل أولاً!');
+                return;
+            }
+
+            if (shoppingCart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+
+            let itemsText = "";
+            let total = 0;
+
+            shoppingCart.forEach((item) => {
+                total += item.price;
+                itemsText += `%0A• ${item.title} (مقاس: ${item.selectedSize}، لون: ${item.color}) - ${item.price} ج.م`;
+            });
+
+            const message = `طلب جديد من موقع VENOO 👕:%0A` +
+                            `----------------------------%0A` +
+                            `👤 *الاسم:* ${name}%0A` +
+                            `📞 *رقم الموبايل:* ${phone}%0A` +
+                            `📍 *العنوان:* ${address}%0A` +
+                            `----------------------------%0A` +
+                            `🛍️ *المنتجات:* ${itemsText}%0A` +
+                            `----------------------------%0A` +
+                            `💰 *الإجمالي:* ${total} ج.م`;
+
+            const targetPhone = "201153578730";
+
+            const whatsappUrl = `https://wa.me/${targetPhone}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+
+            shoppingCart = [];
+            updateCartUI();
+            closeCartDrawer();
+        }
+
+        // Initialize Page
+        window.onload = () => {
+            renderCatalog(productsDatabase);
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
